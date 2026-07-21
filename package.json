@@ -1,7 +1,7 @@
 {
   "name": "ms-clientbar",
-  "private": true,
-  "version": "v1.0.4",
+  "private": false,
+  "version": "v1.0.5",
   "type": "module",
   "main": "./dist/ms-clientBar.js",
   "module": "./dist/ms-clientBar.js",
