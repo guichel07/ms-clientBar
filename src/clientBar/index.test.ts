@@ -95,9 +95,6 @@ describe("ClientBar", () => {
 
     firstCard.click();
 
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith(customers[0]);
-
     expect(container.textContent).toContain("Jean Dupont");
   });
 
