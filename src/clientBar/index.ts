@@ -210,9 +210,6 @@ export class ClientBar {
     this.selectedCustomer = customer;
     this.updateBarDisplay();
     this.resetClientSheet();
-
-    // Notifie main.ts avec le client sélectionné (et non plus tout le tableau).
-    this.callback?.(customer);
   }
 
   resetClientSheet(): void {
