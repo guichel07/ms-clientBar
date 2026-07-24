@@ -16,6 +16,10 @@ const mockClientBar: ClientbarInterface = {
   customers: mockCustomers,
   callback: (customer: Customer) => {
     console.log('Callback déclenché. Nouveaux clients :', customer);
+  },
+  selectedCustomer: (customer: Customer) => {
+    console.log(customer);
+
   }
 };
 

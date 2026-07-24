@@ -24,6 +24,7 @@ export interface ClientbarInterface {
   // Reçoit uniquement le client sélectionné (ou nouvellement créé), pour que
   // main.ts reste synchronisé avec l'état interne de ClientBar.
   callback?: (customer: Customer) => void;
+  selectedCustomer?: (customer: Customer) => void;
 }
 
 export class ClientBar {
@@ -38,6 +39,7 @@ export class ClientBar {
   private clientSearchTerm = "";
   private selectedCustomer: Customer | null = null;
   private callback?: (customer: Customer) => void;
+  private setCustomerSelected?: (customer: Customer) => void;
 
   constructor(mountPoint: HTMLElement) {
     this.el = mountPoint;
@@ -59,6 +61,7 @@ export class ClientBar {
   render(clientInterface: ClientbarInterface): void {
     this.customers = clientInterface.customers;
     this.callback = clientInterface.callback;
+    this.setCustomerSelected = clientInterface.selectedCustomer;
 
     this.el.innerHTML = `
       <div id="client-bar" style="display:flex; align-items:center; gap:10px; background:#fff; border:1px solid var(--paper-line); border-radius:13px; padding:11px 14px; margin-bottom:12px;">
@@ -96,6 +99,7 @@ export class ClientBar {
       avatar.style.background = AVATAR_COLORS[this.customers.indexOf(this.selectedCustomer) % AVATAR_COLORS.length];
       name.textContent = `${this.selectedCustomer.firstname} ${this.selectedCustomer.lastname}`;
       sub.textContent = this.selectedCustomer.phone;
+      this.setCustomerSelected?.(this.selectedCustomer);
     } else {
       avatar.textContent = "?";
       avatar.style.background = "";
